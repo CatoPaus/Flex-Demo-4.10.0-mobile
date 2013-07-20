@@ -35,7 +35,7 @@
 	
 	<s:Rect includeIn="down" top="0" left="0" right="0" bottom="20" radiusX="10">
 		<s:fill>
-			<s:SolidColor color="#00000" alpha="0.4"/>
+			<s:SolidColor color="#000000" alpha="0.4"/>
 		</s:fill>
 	</s:Rect>
 	
