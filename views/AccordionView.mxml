@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="Accordion" xmlns:ns="http://flex.apache.org/experimental/ns"
+		destructionPolicy="never" xmlns:components="components.*">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			[Bindable]private var direction:String = "horizontal";
+			
+			protected function clickHandler(event:MouseEvent):void
+			{
+				navigator.pushView(newView);
+			}
+			
+			protected function direc_changeHandler(event:Event):void
+			{
+				direction = String(direc.selectedValue);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:RadioButtonGroup id="direc" change="direc_changeHandler(event)"/>
+	</fx:Declarations>
+	
+	<s:actionContent>
+		<s:CalloutButton id="callOutButton" label="Settings" calloutDestructionPolicy="never" 
+						 horizontalPosition="end" verticalPosition="after">
+			<s:calloutLayout>
+				<s:VerticalLayout paddingTop="10" paddingBottom="10" paddingRight="10" paddingLeft="10"/>
+			</s:calloutLayout>
+			<s:calloutContent>
+				<s:VGroup fontWeight="bold" fontSize="12" alternatingItemColors="{new Array([0xf6f6f6,0xe5e5e5])}">
+					<s:VGroup>
+						<s:Label text="duration"/>
+						<s:HSlider id="duration" minimum="0" value="500" maximum="2000" stepSize="10"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:Label text="direction"/>
+						<s:HGroup>
+							<s:RadioButton label="Horizontal" value="horizontal" groupName="direc" selected="true"/>
+							<s:RadioButton label="Vertical" value="vertical" groupName="direc"/>
+						</s:HGroup>
+					</s:VGroup>
+				</s:VGroup>
+			</s:calloutContent>
+		</s:CalloutButton>
+	</s:actionContent>
+	
+	<s:Scroller id="scroll" width="100%" height="100%" pageScrollingEnabled="true"  skinClass="skins.PagedIndicatorScrollerSkin"
+				touchInteractionStart="Indicator.touchInteractionStart(event)" touchInteractionEnd="Indicator.positionChanged(event)">
+		<s:Group id="group">
+			<s:layout>
+				<ns:AccordionLayout useScrollBarForNavigation="true" scrollBarDirection="{direction}" 
+									duration="{duration.value}" direction="{direction}"/>
+			</s:layout>
+			
+			<components:AccordionElement/>
+			<components:AccordionElement/>
+			<components:AccordionElement/>
+			<components:AccordionElement/>
+			<components:AccordionElement/>
+			<components:AccordionElement/>
+			<components:AccordionElement/>
+			<components:AccordionElement/>
+			<components:AccordionElement/>
+			<components:AccordionElement/>
+			
+		</s:Group>
+	</s:Scroller>
+	
+	<components:indicator id="Indicator" horizontalCenter="0" bottom="40" direction="{direction}"/>
+	
+</s:View>

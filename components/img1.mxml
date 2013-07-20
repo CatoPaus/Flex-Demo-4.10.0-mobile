@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" width="300" height="220"
+		 
+		 click="mouseDownHandler(event)"
+		 mouseUp="mouseUpHandler(event)"
+		 mouseOut="mouseUpHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function mouseDownHandler(event:MouseEvent):void
+			{
+				currentState = "down";
+			}
+			
+			protected function mouseUpHandler(event:MouseEvent):void
+			{
+				currentState = "up";
+			}
+			
+		]]>
+	</fx:Script>
+	
+	
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="down"/>
+	</s:states>
+	
+	<s:Image>
+		<s:source>
+			<s:MultiDPIBitmapSource source320dpi="@Embed('assets/img.png')"/>
+		</s:source>
+	</s:Image>
+	
+	<s:Rect includeIn="down" top="0" left="0" right="0" bottom="20" radiusX="10">
+		<s:fill>
+			<s:SolidColor color="#00000" alpha="0.4"/>
+		</s:fill>
+	</s:Rect>
+	
+</s:Group>
